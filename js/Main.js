@@ -5,7 +5,7 @@ function preload(){
 }
 
 function create(){
-    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.physics.startSystem(Phaser.Physics.P2JS);
 }
 
 function update(){
