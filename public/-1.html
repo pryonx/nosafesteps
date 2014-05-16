@@ -1,0 +1,32 @@
+<html>
+<body>
+    <input id="input"></input>
+    <button onclick="canvi();">Convert</button>
+    <input id="text"></input>
+    
+</body>
+<script>
+function canvi(){
+    var tstring= document.getElementById("input").value;
+    var astring = tstring.split(",");
+    var string="";
+    var i =0;
+    while(astring.length>i)
+    {
+        if((astring[i]-1)!=0 && astring[i]!=0){
+            string = string+(astring[i]-1);
+        }else if(astring[i]==0){
+            string = string+"0";
+        }else{
+            string = string+"7";
+        }
+        
+        i++;
+        if(astring.length!=i)string=string+", ";
+        
+    }
+    document.getElementById("text").value=string;
+}
+
+</script>
+</html>
