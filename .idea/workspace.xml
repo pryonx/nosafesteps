@@ -1,38 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38939ed8-73de-4346-8df7-7a99efbb91ae" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/models/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/-1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/barrel.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/dude.png.1" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/flag-5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/spike.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/spikeman.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/img/tiles-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level2.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level3.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level4.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level4.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/level5.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/nolevel1.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/level/tiles-1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/phaser-master/phaser.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/scripts/functions.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/scripts/jquery-2.1.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/scripts/socket.io.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/scripts/states.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="38939ed8-73de-4346-8df7-7a99efbb91ae" name="Default" comment="" />
     <ignored path="nosafesteps.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
