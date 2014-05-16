@@ -28,12 +28,12 @@ Game.InGame.prototype = {
 preload : function() {
 
     game.load.tilemap('map', 'level/'+level+'.json', null, Phaser.Tilemap.TILED_JSON);
-    game.load.image('tiles2', 'img/tiles-1.png');
-    game.load.spritesheet('dude', 'img/dude.png.1', 32, 48);
-    game.load.image('flag', 'img/flag-5.png', 32, 32);
-    game.load.image('barrel', 'img/barrel.png', 32, 32);
-    game.load.image('spike', 'img/spike.png', 32, 32);
-    game.load.image('spikeman', 'img/spikeman.png', 32, 32);
+    game.load.image('tiles2', 'assets/tiles-1.png');
+    game.load.spritesheet('dude', 'assets/dude.png', 42, 74);
+    game.load.image('flag', 'assets/flag-5.png', 32, 32);
+    game.load.image('barrel', 'assets/barrel.png', 32, 32);
+    game.load.image('spike', 'assets/spike.png', 32, 32);
+    game.load.image('spikeman', 'assets/spikeman.png', 32, 32);
 },
     
 create : function() {
