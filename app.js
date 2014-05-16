@@ -7,6 +7,6 @@ var app = express()
 app.set('port', process.env.PORT || 3000)
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'game')))
 
-var db = require('./models')(app)
+var db = require('./server')(app)
