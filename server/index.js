@@ -17,10 +17,11 @@ module.exports = function(app) {
                         var sio=io.listen(server);
 
                         sio.sockets.on('connection', function (socket) {
-                            socket.emit('news', { hello: 'world' });
+                            socket.emit('news', { status: 'OK' });
                             socket.on('my other event', function (data) {
                                 console.log(data);
                             });
+
                         });
 
 

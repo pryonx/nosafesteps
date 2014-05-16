@@ -19,6 +19,8 @@ var trap=[];
 var trapi=0;
 var barrel=[];
 var barreli=0;
+var tim=0;
+
 
 Game = {};
 Game.InGame = function(game,level){
@@ -92,123 +94,119 @@ create : function() {
     cursors = game.input.keyboard.createCursorKeys();
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.UP);
     keyboard = game.input.keyboard;
+    var socket = io.connect('http://localhost:3000');
+    socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', {
+            posx: player.x,
+            posy: player.y
+        });
+    });
+
 },
 
 update : function() {
 
-    if (cursors.left.isDown && keyboard.isDown(Phaser.Keyboard.SPACEBAR))
-    {
+    if (cursors.left.isDown && keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
         player.body.moveLeft(350);
 
-        if (facing != 'left')
-        {
+        if (facing != 'left') {
             player.animations.play('left');
             facing = 'left';
         }
-    }else if (cursors.right.isDown  && keyboard.isDown(Phaser.Keyboard.SPACEBAR))
-    {
+    } else if (cursors.right.isDown && keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
         player.body.moveRight(350);
 
-        if (facing != 'right')
-        {
+        if (facing != 'right') {
             player.animations.play('right');
             facing = 'right';
         }
-    }    
-    else if (cursors.left.isDown)
-    {
+    }
+    else if (cursors.left.isDown) {
         player.body.moveLeft(200);
 
-        if (facing != 'left')
-        {
+        if (facing != 'left') {
             player.animations.play('left');
             facing = 'left';
         }
     }
-    else if (cursors.right.isDown)
-    {
+    else if (cursors.right.isDown) {
         player.body.moveRight(200);
 
-        if (facing != 'right')
-        {
+        if (facing != 'right') {
             player.animations.play('right');
             facing = 'right';
         }
     }
-    else
-    {
+    else {
         player.body.velocity.x = 0;
 
-        if (facing != 'idle')
-        {
+        if (facing != 'idle') {
             player.animations.stop();
 
-            if (facing == 'left')
-            {
+            if (facing == 'left') {
                 player.frame = 0;
             }
-            else
-            {
+            else {
                 player.frame = 5;
             }
 
             facing = 'idle';
         }
     }
-    if(jumpButton.isUp&&numerosalts==0){numerosalts=1;}
-    
-    if (jumpButton.isDown && game.time.now > jumpTimer && checkIfCanJump(player))
-    {
-        player.body.moveUp(650);
-        jumpTimer = game.time.now + 750;
-        numerosalts=0;
-    }else if (jumpButton.isDown  && numerosalts==1)
-    {
-        player.body.moveUp(650);
-        jumpTimer = game.time.now + 750;
-        doublejump=false;
-        numerosalts=-1;
+    if (jumpButton.isUp && numerosalts == 0) {
+        numerosalts = 1;
     }
-    
-    if (keyboard.isDown(Phaser.Keyboard.DOWN))
-    {
+
+    if (jumpButton.isDown && game.time.now > jumpTimer && checkIfCanJump(player)) {
         player.body.moveUp(650);
         jumpTimer = game.time.now + 750;
-        doublejump=false;
-        numerosalts=-1;
+        numerosalts = 0;
+    } else if (jumpButton.isDown && numerosalts == 1) {
+        player.body.moveUp(650);
+        jumpTimer = game.time.now + 750;
+        doublejump = false;
+        numerosalts = -1;
+    }
+
+    if (keyboard.isDown(Phaser.Keyboard.DOWN)) {
+        player.body.moveUp(650);
+        jumpTimer = game.time.now + 750;
+        doublejump = false;
+        numerosalts = -1;
     }
 
 
-    if(collides(player,flag)){
-    	
-    	numlevel++;
-    	level="level"+numlevel;
+    if (collides(player, flag)) {
+
+        numlevel++;
+        level = "level" + numlevel;
         //trap[];
         //spike=[];
         //barrel=[];
 
-        var ii=0;
-        while(trapi>ii||spikei>ii||barreli>ii) {
+        var ii = 0;
+        while (trapi > ii || spikei > ii || barreli > ii) {
 
-            if(trap[ii])trap[ii].reset(-100,-100);
-            if(barrel[ii])barrel[ii].reset(-100,-100);
-            if(spike[ii])spike[ii].reset(-100,-100);
+            if (trap[ii])trap[ii].reset(-100, -100);
+            if (barrel[ii])barrel[ii].reset(-100, -100);
+            if (spike[ii])spike[ii].reset(-100, -100);
             ii++;
         }
         //alert(numlevel);
 
-    	game.state.start('InGame');
+        game.state.start('InGame');
     }
-    var iii=0;
-    while(trapi>iii){
-            if(trapcollides(trap[iii],player))cauTrap(trap[iii]);
-            if(checkIfCanJump(trap[iii])) {
-                trap[iii].body.data.gravityScale = 0;
-                trap[iii].reset(trap[iii].owidth, trap[iii].oheight);
-            }
+    var iii = 0;
+    while (trapi > iii) {
+        if (trapcollides(trap[iii], player))cauTrap(trap[iii]);
+        if (checkIfCanJump(trap[iii])) {
+            trap[iii].body.data.gravityScale = 0;
+            trap[iii].reset(trap[iii].owidth, trap[iii].oheight);
+        }
 
 
-        if(collides2(player,trap[iii])){
+        if (collides2(player, trap[iii])) {
 
             playerkill(player);
         }
@@ -216,11 +214,11 @@ update : function() {
         iii++;
     }
 
-    var iii=0;
-    while(barreli>iii){
-        if(trapcollides(barrel[iii],player))cauTrap(barrel[iii]);
-        if(checkIfCanJump(barrel[iii]))barrel[iii].cankill=false;
-        if(collides2(player,barrel[iii])&&barrel[iii].cankill){
+    var iii = 0;
+    while (barreli > iii) {
+        if (trapcollides(barrel[iii], player))cauTrap(barrel[iii]);
+        if (checkIfCanJump(barrel[iii]))barrel[iii].cankill = false;
+        if (collides2(player, barrel[iii]) && barrel[iii].cankill) {
 
             playerkill(player);
         }
@@ -228,9 +226,9 @@ update : function() {
         iii++;
     }
 
-    var iii=0;
-    while(spikei>iii){
-        if(collides2(player,spike[iii])){
+    var iii = 0;
+    while (spikei > iii) {
+        if (collides2(player, spike[iii])) {
 
             playerkill(player);
         }
@@ -238,12 +236,7 @@ update : function() {
         iii++;
     }
 
-    var socket = io.connect('http://localhost:3000');
-    socket.on('news', function (data) {
-        console.log(data);
-        socket.emit('my other event', { my: 'data' });
-    });
-    
+    //console.log(player.x+" , "+player.y);
 }
 
 };
