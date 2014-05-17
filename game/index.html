@@ -6,6 +6,19 @@
     <script type="application/javascript" src="scripts/states.js"></script>
     <script type="application/javascript" src="scripts/functions.js"></script>
     <script type="application/javascript" src="lib/jquery-2.1.1.min.js"></script>
+    <script>
+        var posX=-1;
+        var posY=-1;
+
+        var socket = io.connect('http://localhost:3000');
+
+        socket.on('news', function (data) {
+            console.log(data);
+            socket.emit("my", { posX: posX,posY:posY  });
+
+        });
+
+    </script>
 </head>
 <body>
 </body>

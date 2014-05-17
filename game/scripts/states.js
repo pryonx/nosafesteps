@@ -19,8 +19,6 @@ var trap=[];
 var trapi=0;
 var barrel=[];
 var barreli=0;
-var tim=0;
-
 
 Game = {};
 Game.InGame = function(game,level){
@@ -94,18 +92,19 @@ create : function() {
     cursors = game.input.keyboard.createCursorKeys();
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.UP);
     keyboard = game.input.keyboard;
-    var socket = io.connect('http://localhost:3000');
-    socket.on('news', function (data) {
-        console.log(data);
-        socket.emit('my other event', {
-            posx: player.x,
-            posy: player.y
-        });
-    });
+
 
 },
 
 update : function() {
+
+    posX=player.x;
+    posY=player.y;
+
+    socket.emit("my", { posX: posX,posY:posY  });
+
+
+    //socket.send("posx:"+ player.x+" , posy:"+player.y);
 
     if (cursors.left.isDown && keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
         player.body.moveLeft(350);
@@ -170,6 +169,7 @@ update : function() {
     }
 
     if (keyboard.isDown(Phaser.Keyboard.DOWN)) {
+
         player.body.moveUp(650);
         jumpTimer = game.time.now + 750;
         doublejump = false;
