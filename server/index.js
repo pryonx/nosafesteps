@@ -7,7 +7,7 @@ module.exports = function(app) {
     var http =require('http');
     var console = require('console');
     var io = require('socket.io');
-
+    var IDarray=[];
 
 
     var server=http.createServer(app).listen(app.get('port'), function(){
@@ -17,10 +17,16 @@ module.exports = function(app) {
     var sio=io.listen(server);
 
     sio.sockets.on('connection', function (socket) {
-        socket.emit('news', { hello: 'world' });
-        socket.on('my', function (data) {
+        socket.emit('news', { id: socket.id });
+
+
+        socket.on('id', function (data) {
             console.log(data);
+            IDarray[data.myID+","+data.mateID]=data.posX+","+data.posY;
+
+            if(IDarray[data.mateID+","+data.myID])socket.emit('position', { position: IDarray[data.mateID+","+data.myID] });
         });
+
     });
 
 

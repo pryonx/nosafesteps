@@ -9,17 +9,26 @@
     <script>
         var posX=-1;
         var posY=-1;
+        var myID="";
+        var mateID="";
 
-        var socket = io.connect('http://localhost:3000');
+
+        var socket = io.connect('http://192.168.1.145:3000');
 
         socket.on('news', function (data) {
             console.log(data);
-            socket.emit("my", { posX: posX,posY:posY  });
-
+            myID= document.getElementById('myID').value=data.id;
         });
 
+        function sendID() {
+            mateID = document.getElementById('mateID').value;
+            if (mateID!=""){
+                document.getElementById('mateID').disabled=true;
+        }else alert("posa una id tita");
+        }
     </script>
 </head>
 <body>
+Your ID:<input id="myID" disabled/>Your mate's ID:<input id="mateID" /><button onclick="sendID();">Send ID</button>
 </body>
 </html>

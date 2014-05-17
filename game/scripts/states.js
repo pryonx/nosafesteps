@@ -98,13 +98,20 @@ create : function() {
 
 update : function() {
 
-    posX=player.x;
-    posY=player.y;
+    posX = player.x;
+    posY = player.y;
+    if (mateID!=""){
+        socket.emit("id", {
+            myID: myID,
+            mateID: mateID,
+            posX: posX,
+            posY: posY
+        });
+    }
 
-    socket.emit("my", { posX: posX,posY:posY  });
-
-
-    //socket.send("posx:"+ player.x+" , posy:"+player.y);
+    socket.on('position', function (data) {
+        //console.log(data);
+    });
 
     if (cursors.left.isDown && keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
         player.body.moveLeft(350);
