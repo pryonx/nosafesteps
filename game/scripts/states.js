@@ -81,6 +81,14 @@ create : function() {
 
     flag.body.fixedRotation = true;
 
+    player2 = game.add.sprite(playerwidth, playerheight, 'dude');
+    /*player2.animations.add('left', [0, 1, 2, 3], 10, true);
+    player2.animations.add('turn', [4], 20, true);
+    player2.animations.add('right', [5, 6, 7, 8], 10, true);//no va els moviments player2
+     */
+    game.physics.p2.enable(player2);
+
+    player2.body.fixedRotation = true;
 
     //TRAPS TRAPS TRAPS TRAPS TRAPS TRAPS TRAPS 
 
@@ -111,6 +119,11 @@ update : function() {
 
     socket.on('position', function (data) {
         //console.log(data);
+        var novax="";
+        var novay="";
+        novax=data.position.split(",")[0];
+        novay=data.position.split(",")[1];
+        player2.reset(novax,novay);
     });
 
     if (cursors.left.isDown && keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
