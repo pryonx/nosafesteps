@@ -19,9 +19,9 @@ var trap=[];
 var trapi=0;
 var barrel=[];
 var barreli=0;
-var flyer=[];
-var flyeri=0;
-
+var lakitu="";
+var lakitu2="";
+var timer=0;
 //node
 var posX=-1;
 var posY=-1;
@@ -52,6 +52,8 @@ preload : function() {
     game.load.image('spike', 'assets/spike.png', 32, 32);
     game.load.image('spike2', 'assets/spike2.png', 32, 32);
     game.load.image('spikeman', 'assets/spikeman.png', 32, 32);
+    game.load.image('lakitu', 'assets/lakitu.png', 32, 32);
+    game.load.image('tifa', 'assets/tifa.png', 32, 32);
 },
     
 create : function() {
@@ -129,6 +131,7 @@ update : function() {
     posX = player.x;
     posY = player.y;
     if (mateID!=""){
+        if(lakitu2==""&&lakitu!="")createLakitu2(lakitu.owidth,lakitu.oheight);
         player2.visible=true;
         socket.emit("id", {
             myID: myID,
@@ -272,8 +275,8 @@ update : function() {
             if(barrel[iii].spike)barrel[iii].reset(-100,-100);
         }
 
-        if (collides2(player, barrel[iii],10) && barrel[iii].cankill) {
-            createBarrel(barrel[iii].owidth,barrel[iii].oheight,'barrel');
+        if (collides2(player, barrel[iii],12) && barrel[iii].cankill) {
+            //createBarrel(barrel[iii].owidth,barrel[iii].oheight,'barrel');
             playerkill(player);
         }
 
@@ -289,8 +292,32 @@ update : function() {
 
         iii++;
     }
+    if(lakitu!=""){
+        if((lakitu.x<player.x)){
+            lakitu.reset(lakitu.x+1,lakitu.y);
+        }
+        else {
+            lakitu.reset(lakitu.x-1,lakitu.y);
+        }
+    }
 
-    //console.log(player.x+" , "+player.y);
+    if(lakitu2!=""){
+        if((lakitu2.x<player2.x)){
+            lakitu2.reset(lakitu2.x+1,lakitu2.y);
+        }
+        else {
+            lakitu2.reset(lakitu2.x-1,lakitu2.y);
+        }
+    }
+
+    timer++;
+
+    if((trapcollides(lakitu,player))&&(timer%50==0)){
+        createBarrel(lakitu.x,lakitu.y+50,'tifa');
+    }
+    if(trapcollides(lakitu2,player2)&&timer%50==0){
+        createBarrel(lakitu2.x,lakitu2.y+50,'tifa');
+    }
 }
 
 };

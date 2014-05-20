@@ -83,20 +83,27 @@ function createTrap(width,height){
     trapi++;
 }
 
-function createFlyer(width,height,owidth,oheight){
+function createLakitu(width,height){
 
-    flyer[flyeri] = game.add.sprite(width, height, 'spikeman');
+    lakitu = game.add.sprite(width, height, 'lakitu');
 
-    game.physics.p2.enable(flyer[flyeri]);
+    game.physics.p2.enable(lakitu);
 
-    flyer[flyeri].body.data.gravityScale = 0;
-    flyer[flyeri].body.setZeroDamping();
-    flyer[flyeri].body.fixedRotation = true;
-    flyer[flyeri].owidth=owidth;
-    flyer[flyeri].oheight=oheight;
+    lakitu.body.data.gravityScale = 0;
+    lakitu.body.setZeroDamping();
+    lakitu.body.fixedRotation = true;
+    lakitu.owidth=width;
+    lakitu.oheight=height;
+}
+function createLakitu2(width,height){
 
+    lakitu2 = game.add.sprite(width, height, 'lakitu');
 
-    flyeri++;
+    game.physics.p2.enable(lakitu2);
+
+    lakitu2.body.data.gravityScale = 0;
+    lakitu2.body.setZeroDamping();
+    lakitu2.body.fixedRotation = true;
 }
 
 function createBarrel(width,height,sprite){
@@ -122,6 +129,7 @@ function playerkill(player){
 
     player.reset(player.owidth, player.oheight);
     deaths++;
+    if(lakitu!="")lakitu.reset(lakitu.owidth,lakitu.oheight);
     scoreText.setText("Deaths: "+deaths);
     //console.log(deaths);
 }
