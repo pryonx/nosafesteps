@@ -21,7 +21,7 @@ module.exports = function(app) {
 
 
         socket.on('id', function (data) {
-            console.log(data);
+            
             IDarray[data.myID+","+data.mateID]=data.posX+","+data.posY;
 
             if(IDarray[data.mateID+","+data.myID])socket.emit('position', { position: IDarray[data.mateID+","+data.myID] });

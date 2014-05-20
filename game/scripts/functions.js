@@ -1,3 +1,12 @@
+//node
+function sendID() {
+            mateID = document.getElementById('mateID').value;
+            if (mateID!=""){
+                document.getElementById('mateID').disabled=true;
+        }else alert("posa una id tita");
+}
+
+//game
 function cauTrap(trap){
 
 
@@ -28,12 +37,12 @@ function collides (a, b)
 
 }
 
-function collides2 (a, b)
+function collides2 (a, b,pre)
 {
 
     return !(
-        ((a.y + a.height+5) < (b.y-5)) ||
-        (a.y-5 > (b.y + b.height+5)) ||
+        ((a.y + a.height+pre) < (b.y-pre)) ||
+        (a.y-pre > (b.y + b.height+pre)) ||
         ((a.x + a.width) < b.x) ||
         (a.x > (b.x + b.width))
         );

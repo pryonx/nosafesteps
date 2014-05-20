@@ -20,6 +20,21 @@ var trapi=0;
 var barrel=[];
 var barreli=0;
 
+//node
+var posX=-1;
+var posY=-1;
+var myID="";
+var mateID="";
+
+        var socket = io.connect('http://localhost:3000');
+
+        socket.on('news', function (data) {
+            console.log(data);
+            myID= document.getElementById('myID').value=data.id;
+        });
+	//sendID();
+	
+//fi node
 Game = {};
 Game.InGame = function(game,level){
 };
@@ -81,7 +96,7 @@ create : function() {
 
     flag.body.fixedRotation = true;
 
-    player2 = game.add.sprite(playerwidth, playerheight, 'dude');
+    player2 = game.add.sprite(-100, -100, 'dude');
     /*player2.animations.add('left', [0, 1, 2, 3], 10, true);
     player2.animations.add('turn', [4], 20, true);
     player2.animations.add('right', [5, 6, 7, 8], 10, true);//no va els moviments player2
@@ -89,7 +104,9 @@ create : function() {
     game.physics.p2.enable(player2);
 
     player2.body.fixedRotation = true;
-
+    
+    player2.visible=false;
+    
     //TRAPS TRAPS TRAPS TRAPS TRAPS TRAPS TRAPS 
 
     $.getScript("level/"+level+".js");
@@ -109,6 +126,7 @@ update : function() {
     posX = player.x;
     posY = player.y;
     if (mateID!=""){
+        player2.visible=true;
         socket.emit("id", {
             myID: myID,
             mateID: mateID,
@@ -197,7 +215,7 @@ update : function() {
     }
 
 
-    if (collides(player, flag)) {
+    if (collides(player, flag)||collides(player2, flag)) {
 
         numlevel++;
         level = "level" + numlevel;
@@ -219,14 +237,14 @@ update : function() {
     }
     var iii = 0;
     while (trapi > iii) {
-        if (trapcollides(trap[iii], player))cauTrap(trap[iii]);
+        if (trapcollides(trap[iii], player)||trapcollides(trap[iii], player2))cauTrap(trap[iii]);
         if (checkIfCanJump(trap[iii])) {
             trap[iii].body.data.gravityScale = 0;
             trap[iii].reset(trap[iii].owidth, trap[iii].oheight);
         }
 
 
-        if (collides2(player, trap[iii])) {
+        if (collides2(player, trap[iii],7)) {
 
             playerkill(player);
         }
@@ -236,9 +254,9 @@ update : function() {
 
     var iii = 0;
     while (barreli > iii) {
-        if (trapcollides(barrel[iii], player))cauTrap(barrel[iii]);
+        if (trapcollides(barrel[iii], player)||trapcollides(barrel[iii], player2))cauTrap(barrel[iii]);
         if (checkIfCanJump(barrel[iii]))barrel[iii].cankill = false;
-        if (collides2(player, barrel[iii]) && barrel[iii].cankill) {
+        if (collides2(player, barrel[iii],10) && barrel[iii].cankill) {
 
             playerkill(player);
         }
@@ -248,7 +266,7 @@ update : function() {
 
     var iii = 0;
     while (spikei > iii) {
-        if (collides2(player, spike[iii])) {
+        if (collides2(player, spike[iii],0)) {
 
             playerkill(player);
         }
