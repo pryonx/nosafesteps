@@ -244,7 +244,7 @@ update : function() {
         }
 
 
-        if (collides2(player, trap[iii],7)) {
+        if (collides2(player, trap[iii],10)) {
 
             playerkill(player);
         }
