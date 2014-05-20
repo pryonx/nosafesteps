@@ -19,6 +19,8 @@ var trap=[];
 var trapi=0;
 var barrel=[];
 var barreli=0;
+var flyer=[];
+var flyeri=0;
 
 //node
 var posX=-1;
@@ -48,6 +50,7 @@ preload : function() {
     game.load.image('flag', 'assets/flag-5.png', 32, 32);
     game.load.image('barrel', 'assets/barrel.png', 32, 32);
     game.load.image('spike', 'assets/spike.png', 32, 32);
+    game.load.image('spike2', 'assets/spike2.png', 32, 32);
     game.load.image('spikeman', 'assets/spikeman.png', 32, 32);
 },
     
@@ -238,11 +241,19 @@ update : function() {
     var iii = 0;
     while (trapi > iii) {
         if (trapcollides(trap[iii], player)||trapcollides(trap[iii], player2))cauTrap(trap[iii]);
-        if (checkIfCanJump(trap[iii])) {
+        /*if (checkIfCanJump(trap[iii])) {
             trap[iii].body.data.gravityScale = 0;
             trap[iii].reset(trap[iii].owidth, trap[iii].oheight);
+        }*/
+        if (checkIfCanJump(trap[iii])) {
+            trap[iii].res=true;
         }
-
+        if(trap[iii].res&&trap[iii].y>trap[iii].oheight){
+            trap[iii].reset(trap[iii].x,trap[iii].y-2);
+            trap[iii].body.data.gravityScale = 0;
+        }else{
+            trap[iii].res=false;
+        }
 
         if (collides2(player, trap[iii],10)) {
 
@@ -254,10 +265,15 @@ update : function() {
 
     var iii = 0;
     while (barreli > iii) {
-        if (trapcollides(barrel[iii], player)||trapcollides(barrel[iii], player2))cauTrap(barrel[iii]);
-        if (checkIfCanJump(barrel[iii]))barrel[iii].cankill = false;
-        if (collides2(player, barrel[iii],10) && barrel[iii].cankill) {
 
+        if (trapcollides(barrel[iii], player)||trapcollides(barrel[iii], player2))cauTrap(barrel[iii]);
+        if (checkIfCanJump(barrel[iii])){
+            barrel[iii].cankill = false;
+            if(barrel[iii].spike)barrel[iii].reset(-100,-100);
+        }
+
+        if (collides2(player, barrel[iii],10) && barrel[iii].cankill) {
+            createBarrel(barrel[iii].owidth,barrel[iii].oheight,'barrel');
             playerkill(player);
         }
 
@@ -266,7 +282,7 @@ update : function() {
 
     var iii = 0;
     while (spikei > iii) {
-        if (collides2(player, spike[iii],0)) {
+        if (collides(player, spike[iii])) {
 
             playerkill(player);
         }

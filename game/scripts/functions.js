@@ -79,21 +79,39 @@ function createTrap(width,height){
     trap[trapi].body.fixedRotation = true;
     trap[trapi].owidth=width;
     trap[trapi].oheight=height;
-    trap[trapi].timer=0;
 
     trapi++;
 }
 
+function createFlyer(width,height,owidth,oheight){
 
-function createBarrel(width,height){
+    flyer[flyeri] = game.add.sprite(width, height, 'spikeman');
 
-    barrel[barreli] = game.add.sprite(width, height, 'barrel');
+    game.physics.p2.enable(flyer[flyeri]);
+
+    flyer[flyeri].body.data.gravityScale = 0;
+    flyer[flyeri].body.setZeroDamping();
+    flyer[flyeri].body.fixedRotation = true;
+    flyer[flyeri].owidth=owidth;
+    flyer[flyeri].oheight=oheight;
+
+
+    flyeri++;
+}
+
+function createBarrel(width,height,sprite){
+
+    barrel[barreli] = game.add.sprite(width, height, sprite);
 
     game.physics.p2.enable(barrel[barreli]);
 
     barrel[barreli].body.data.gravityScale = 0;
     barrel[barreli].body.setZeroDamping();
-    barrel[barreli].body.fixedRotation = false;
+    if(sprite=='barrel')barrel[barreli].body.fixedRotation = false;
+    else {
+        barrel[barreli].body.fixedRotation = true;
+        barrel[barreli].spike=true;
+    }
     barrel[barreli].owidth=width;
     barrel[barreli].oheight=height;
     barrel[barreli].cankill=true;
