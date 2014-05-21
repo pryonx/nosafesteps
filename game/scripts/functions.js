@@ -94,6 +94,7 @@ function createLakitu(width,height){
     lakitu.body.fixedRotation = true;
     lakitu.owidth=width;
     lakitu.oheight=height;
+    lakitu.caca=true;
 }
 function createLakitu2(width,height){
 
@@ -104,6 +105,9 @@ function createLakitu2(width,height){
     lakitu2.body.data.gravityScale = 0;
     lakitu2.body.setZeroDamping();
     lakitu2.body.fixedRotation = true;
+    lakitu.owidth=width;
+    lakitu.oheight=height;
+    lakitu.caca=true;
 }
 
 function createBarrel(width,height,sprite){

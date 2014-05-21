@@ -10,3 +10,4 @@ createBarrel(623,350,'spike2');
 createBarrel(624,350,'spike2');
 createBarrel(625,350,'spike2');
 createBarrel(626,350,'spike2');
+createLakitu(620,290);

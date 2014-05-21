@@ -225,8 +225,14 @@ update : function() {
 
         numlevel++;
         level = "level" + numlevel;
-        if(lakitu!="")lakitu.reset(-800,-800);
-        if(lakitu2!="")lakitu2.reset(-800,-800);
+        if(lakitu!=""){
+            lakitu.reset(-800,-800);
+            lakitu.caca=false;
+        }
+        if(lakitu2!=""){
+            lakitu2.reset(-800,-800);
+            lakitu2.caca=false;
+        }
         //lakitu2.reset(-100,-100);
         //trap[];
         //spike=[];
@@ -315,10 +321,10 @@ update : function() {
 
     timer++;
 
-    if((trapcollides(lakitu,player))&&(timer%30==0)){
+    if(lakitu.caca&&(trapcollides(lakitu,player))&&(timer%30==0)){
         createBarrel(lakitu.x,lakitu.y+50,'tifa');
     }
-    if(trapcollides(lakitu2,player2)&&timer%30==0){
+    if(lakitu2.caca&&trapcollides(lakitu2,player2)&&timer%30==0){
         createBarrel(lakitu2.x,lakitu2.y+50,'tifa');
     }
 }
