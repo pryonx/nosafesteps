@@ -50,9 +50,6 @@ function collides2 (a, b,pre)
 }
 
 
-
-
-
 function createSpike(width,height){
 
     spike[spikei] = game.add.sprite(width, height, 'spike');

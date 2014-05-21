@@ -47,7 +47,7 @@ Game.InGame.prototype = {
 preload : function() {
     //carregat de tots els fitxers necesaris
     game.load.tilemap('map', 'level/'+level+'.json', null, Phaser.Tilemap.TILED_JSON);
-    game.load.image('tiles2', 'assets/tiles-1.png');
+    game.load.image('tiles2', 'assets/textures.png');
     game.load.spritesheet('dude', 'assets/dude.png', 42, 74);
     game.load.spritesheet('dude2', 'assets/dude2.png', 42, 74);
     game.load.image('flag', 'assets/flag-5.png', 32, 32);
