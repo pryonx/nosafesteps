@@ -47,12 +47,14 @@ preload : function() {
     game.load.tilemap('map', 'level/'+level+'.json', null, Phaser.Tilemap.TILED_JSON);
     game.load.image('tiles2', 'assets/tiles-1.png');
     game.load.spritesheet('dude', 'assets/dude.png', 42, 74);
+    game.load.spritesheet('dude2', 'assets/dude2.png', 42, 74);
     game.load.image('flag', 'assets/flag-5.png', 32, 32);
     game.load.image('barrel', 'assets/barrel.png', 32, 32);
     game.load.image('spike', 'assets/spike.png', 32, 32);
     game.load.image('spike2', 'assets/spike2.png', 32, 32);
     game.load.image('spikeman', 'assets/spikeman.png', 32, 32);
     game.load.image('lakitu', 'assets/lakitu.png', 32, 32);
+    game.load.image('lakitu2', 'assets/lakitu2.png', 32, 32);
     game.load.image('tifa', 'assets/tifa.png', 32, 32);
 },
     
@@ -101,7 +103,7 @@ create : function() {
 
     flag.body.fixedRotation = true;
 
-    player2 = game.add.sprite(-100, -100, 'dude');
+    player2 = game.add.sprite(-100, -100, 'dude2');
     /*player2.animations.add('left', [0, 1, 2, 3], 10, true);
     player2.animations.add('turn', [4], 20, true);
     player2.animations.add('right', [5, 6, 7, 8], 10, true);//no va els moviments player2
@@ -131,9 +133,8 @@ update : function() {
     posX = player.x;
     posY = player.y;
     if (mateID!=""&&((player.body.velocity.x>1||player.body.velocity.x<-1)||(player.body.velocity.y>1||player.body.velocity.y<-1))){
-        console.log("update");
-        if(lakitu2==""&&lakitu!="")createLakitu2(lakitu.owidth,lakitu.oheight);
-        player2.visible=true;
+        //console.log("update");
+
         socket.emit("id", {
             myID: myID,
             mateID: mateID,
@@ -146,6 +147,8 @@ update : function() {
         //console.log(data);
         var novax="";
         var novay="";
+        if(lakitu2==""&&lakitu!="")createLakitu2(lakitu.owidth-50,lakitu.oheight);
+        player2.visible=true;
         novax=data.position.split(",")[0];
         novay=data.position.split(",")[1];
         player2.reset(novax,novay);

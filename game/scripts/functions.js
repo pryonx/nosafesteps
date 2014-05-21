@@ -98,7 +98,7 @@ function createLakitu(width,height){
 }
 function createLakitu2(width,height){
 
-    lakitu2 = game.add.sprite(width, height, 'lakitu');
+    lakitu2 = game.add.sprite(width, height, 'lakitu2');
 
     game.physics.p2.enable(lakitu2);
 
