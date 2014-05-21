@@ -221,7 +221,7 @@ update : function() {
     }
 
 
-    if (collides(player, flag)||collides(player2, flag)) {
+    if (collides(player, flag)&&collides(player2, flag)) {
 
         numlevel++;
         level = "level" + numlevel;
@@ -232,6 +232,7 @@ update : function() {
         if(lakitu2!=""){
             lakitu2.reset(-800,-800);
             lakitu2.caca=false;
+            //lakitu2="";
         }
         //lakitu2.reset(-100,-100);
         //trap[];
