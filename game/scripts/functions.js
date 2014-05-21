@@ -134,7 +134,7 @@ function playerkill(player){
     player.reset(player.owidth, player.oheight);
     deaths++;
     if(lakitu!="")lakitu.reset(lakitu.owidth,lakitu.oheight);
-    scoreText.setText("Deaths: "+deaths);
+    textDeaths.setText("Deaths: "+deaths);
     //console.log(deaths);
 }
 
