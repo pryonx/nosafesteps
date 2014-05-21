@@ -221,7 +221,7 @@ update : function() {
     }
 
 
-    if (collides(player, flag)&&collides(player2, flag)) {
+    if (collides(player, flag)) {
 
         numlevel++;
         level = "level" + numlevel;
@@ -251,6 +251,7 @@ update : function() {
 
         game.state.start('InGame');
     }
+
     var iii = 0;
     while (trapi > iii) {
         if (trapcollides(trap[iii], player)||trapcollides(trap[iii], player2))cauTrap(trap[iii]);
