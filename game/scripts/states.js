@@ -130,7 +130,8 @@ update : function() {
 
     posX = player.x;
     posY = player.y;
-    if (mateID!=""){
+    if (mateID!=""&&((player.body.velocity.x>1||player.body.velocity.x<-1)||(player.body.velocity.y>1||player.body.velocity.y<-1))){
+        console.log("update");
         if(lakitu2==""&&lakitu!="")createLakitu2(lakitu.owidth,lakitu.oheight);
         player2.visible=true;
         socket.emit("id", {
@@ -221,7 +222,7 @@ update : function() {
     }
 
 
-    if (collides(player, flag)) {
+    if (collides(player, flag)||collides(player2, flag)) {
 
         numlevel++;
         level = "level" + numlevel;
