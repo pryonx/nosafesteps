@@ -125,7 +125,7 @@ create : function() {
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.UP);
     keyboard = game.input.keyboard;
 
-
+    timer=0;
 },
 
 update : function() {
@@ -225,7 +225,7 @@ update : function() {
     }
 
 
-    if (collides(player, flag)||collides(player2, flag)) {
+    if ((collides(player, flag)||collides(player2, flag))&&timer>100) {
 
         numlevel++;
         level = "level" + numlevel;
