@@ -28,7 +28,7 @@ var posY=-1;
 var myID="";
 var mateID="";
 
-        var socket = io.connect('http://localhost:3000');
+        var socket = io.connect('http://172.17.200.126:3000');
 
         socket.on('news', function (data) {
             console.log(data);
@@ -225,6 +225,9 @@ update : function() {
 
         numlevel++;
         level = "level" + numlevel;
+        if(lakitu!="")lakitu.reset(-800,-800);
+        if(lakitu2!="")lakitu2.reset(-800,-800);
+        //lakitu2.reset(-100,-100);
         //trap[];
         //spike=[];
         //barrel=[];
@@ -294,28 +297,28 @@ update : function() {
     }
     if(lakitu!=""){
         if((lakitu.x<player.x)){
-            lakitu.reset(lakitu.x+1,lakitu.y);
+            lakitu.reset(lakitu.x+4,lakitu.y);
         }
         else {
-            lakitu.reset(lakitu.x-1,lakitu.y);
+            lakitu.reset(lakitu.x-4,lakitu.y);
         }
     }
 
     if(lakitu2!=""){
         if((lakitu2.x<player2.x)){
-            lakitu2.reset(lakitu2.x+1,lakitu2.y);
+            lakitu2.reset(lakitu2.x+4,lakitu2.y);
         }
         else {
-            lakitu2.reset(lakitu2.x-1,lakitu2.y);
+            lakitu2.reset(lakitu2.x-4,lakitu2.y);
         }
     }
 
     timer++;
 
-    if((trapcollides(lakitu,player))&&(timer%50==0)){
+    if((trapcollides(lakitu,player))&&(timer%30==0)){
         createBarrel(lakitu.x,lakitu.y+50,'tifa');
     }
-    if(trapcollides(lakitu2,player2)&&timer%50==0){
+    if(trapcollides(lakitu2,player2)&&timer%30==0){
         createBarrel(lakitu2.x,lakitu2.y+50,'tifa');
     }
 }
