@@ -28,7 +28,7 @@ var posY=-1;
 var myID="";
 var mateID="";
 
-        var socket = io.connect('http://172.17.200.126:3000');
+        var socket = io.connect('http://sapatoasdf.zapto.org:3000');
 
         socket.on('news', function (data) {
             console.log(data);
