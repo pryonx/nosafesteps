@@ -20,7 +20,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/Documentos\/Windows\/assets\/textures.png",
+         "image":"textures.png",
          "imageheight":90,
          "imagewidth":90,
          "margin":0,
