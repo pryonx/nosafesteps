@@ -28,6 +28,7 @@ var posY=-1;//guarda la posicio Y actual del player 1
 var myID="";//guarda la teva id
 var mateID="";//guarda la id introduida del company
 
+
         var socket = io.connect('http://172.17.200.25:3000');//variable del socket
         //si rep info amb el nom de news del server actualitza la teva id(nomes passa al carregar)
         socket.on('news', function (data) {
@@ -37,6 +38,22 @@ var mateID="";//guarda la id introduida del company
 	//sendID();
 	
 //fi node
+
+//pause
+document.addEventListener("keydown", pausel, false);
+function pausel(e) {
+    var keyCode = e.keyCode;//alert(keyCode);
+
+    if(keyCode=="80"&&game.paused==true){
+        game.paused=false;
+        //console.log("continua");
+    }else if(keyCode=="80"&&game.paused==false){
+        game.paused=true;
+        //console.log("pause");
+    }
+}
+//FI pause
+
 Game = {};
 Game.InGame = function(game,level){
 
@@ -173,6 +190,7 @@ update : function() {
         novay=data.position.split(",")[1];
         player2.reset(novax,novay);
     });
+
 
     //funcions de moviment
     if (cursors.left.isDown && keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
