@@ -360,7 +360,7 @@ update : function() {
     timer++;
 
     //si ho te activat i el personatge al que segueix es a sota seu i dins el rang de temps li tira un projectil
-    if(lakitu.caca&&(trapcollides(lakitu,player))&&false){
+    if(lakitu.caca&&(trapcollides(lakitu,player))&&timer%30==0){
         createBarrel(lakitu.x,lakitu.y+50,'tifa');
     }
     if(lakitu2.caca&&trapcollides(lakitu2,player2)&&timer%30==0){
