@@ -28,7 +28,7 @@ var posY=-1;//guarda la posicio Y actual del player 1
 var myID="";//guarda la teva id
 var mateID="";//guarda la id introduida del company
 
-        var socket = io.connect('http://sapatoasdf.zapto.org:3000');//variable del socket
+        var socket = io.connect('http://172.17.200.25:3000');//variable del socket
         //si rep info amb el nom de news del server actualitza la teva id(nomes passa al carregar)
         socket.on('news', function (data) {
             console.log(data);
@@ -156,6 +156,13 @@ update : function() {
     }
     //si rebem indormacio amb el nom positionexecutem la funcio que nou el personatge 2 i crea el lakitu2 si no estava creat i si es necesari
 
+    socket.on('mready', function (data){player2.ready=true;});
+
+    if(player.ready==true){
+        socket.emit("ready", {myID: myID,mateID: mateID});
+        player.ready=false;
+    }
+
     socket.on('position', function (data) {
         //console.log(data);
         var novax="";
@@ -241,7 +248,9 @@ update : function() {
     //FI funcions de moviment
     //si player 1 o 2 toca la bandera carrega el stat ingame amb level++
 
-    if ((collides2(player, flag,10)||collides(player2, flag,10))&&timer>100) {
+    if(collides(player, flag))player.ready=true;
+
+    if (player.ready&&player2.ready&&timer>100) {
 
         numlevel++;
         level = "level" + numlevel;
@@ -351,7 +360,7 @@ update : function() {
     timer++;
 
     //si ho te activat i el personatge al que segueix es a sota seu i dins el rang de temps li tira un projectil
-    if(lakitu.caca&&(trapcollides(lakitu,player))&&(timer%30==0)){
+    if(lakitu.caca&&(trapcollides(lakitu,player))&&false){
         createBarrel(lakitu.x,lakitu.y+50,'tifa');
     }
     if(lakitu2.caca&&trapcollides(lakitu2,player2)&&timer%30==0){
