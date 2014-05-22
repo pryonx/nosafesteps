@@ -1,6 +1,6 @@
 // (Y,X)
 //player.reset();
-//flag.reset(1000,500);
+flag.reset(1100,350);
 
 createSpike(345,585);
 createSpike(380,585);
