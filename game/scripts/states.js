@@ -250,7 +250,7 @@ update : function() {
 
     if(collides(player, flag))player.ready=true;
 
-    if (player.ready&&player2.ready&&timer>100) {
+    if (player.ready&&(player2.ready||player2.visible==false)&&timer>100) {
 
         numlevel++;
         level = "level" + numlevel;
