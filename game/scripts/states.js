@@ -1,5 +1,6 @@
-var game = new Phaser.Game(800,600,Phaser.AUTO,'container');
+var game = new Phaser.Game(800,600,Phaser.AUTO,'game');
 
+var actualState="InGame";
 var player;
 var facing = 'left';
 var jumpTimer = 0;//temps de espera entra salts
@@ -31,9 +32,13 @@ function pausel(e) {
 
     if(keyCode=="80"&&game.paused==true){
         game.paused=false;
+        document.getElementById('restart').style.display="none";
+        document.getElementById('mainMenu').style.display="none";
         //console.log("continua");
     }else if(keyCode=="80"&&game.paused==false){
         game.paused=true;
+        document.getElementById('restart').style.display="";
+        document.getElementById('mainMenu').style.display="";
         //console.log("pause");
     }
 }
@@ -64,6 +69,7 @@ preload : function() {
 },
     
 create : function() {
+    actualState="InGame";
     //iniciem el motor de fisiques
     game.physics.startSystem(Phaser.Physics.P2JS);
     //color de fondo

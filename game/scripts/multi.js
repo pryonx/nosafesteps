@@ -79,6 +79,7 @@ preload : function() {
     
 create : function() {
     console.log("start state multi");
+    actualState="InGameMulti";
     //iniciem el motor de fisiques
     game.physics.startSystem(Phaser.Physics.P2JS);
     //color de fondo

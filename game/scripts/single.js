@@ -61,6 +61,7 @@ preload : function() {
     
 create : function() {
     console.log("start state single");
+    actualState="InGameSingle";
     //iniciem el motor de fisiques
     game.physics.startSystem(Phaser.Physics.P2JS);
     //color de fondo

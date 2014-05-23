@@ -1,4 +1,10 @@
 //node
+function actionOnClick () {
+
+    background.visible =! background.visible;
+
+}
+
 function sendID() {
             mateID = document.getElementById('mateID').value;
             if (mateID!=""){
