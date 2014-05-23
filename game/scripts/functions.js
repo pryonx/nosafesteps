@@ -4,6 +4,20 @@ function actionOnClick () {
     background.visible =! background.visible;
 
 }
+function goMainMenu(){
+    game.state.start('InGame');
+    game.paused=false;
+    document.getElementById('restart').style.display="none";
+    document.getElementById('mainMenu').style.display="none";
+
+}
+
+function restartLevel(){
+    game.state.start(actualState);
+    game.paused=false;
+    document.getElementById('restart').style.display="none";
+    document.getElementById('mainMenu').style.display="none";
+}
 
 function sendID() {
             mateID = document.getElementById('mateID').value;
