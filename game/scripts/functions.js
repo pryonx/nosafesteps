@@ -1,3 +1,32 @@
+//node
+function actionOnClick () {
+
+    background.visible =! background.visible;
+
+}
+function goMainMenu(){
+    game.state.start('InGame');
+    game.paused=false;
+    document.getElementById('restart').style.display="none";
+    document.getElementById('mainMenu').style.display="none";
+
+}
+
+function restartLevel(){
+    game.state.start(actualState);
+    game.paused=false;
+    document.getElementById('restart').style.display="none";
+    document.getElementById('mainMenu').style.display="none";
+}
+
+function sendID() {
+            mateID = document.getElementById('mateID').value;
+            if (mateID!=""){
+                document.getElementById('mateID').disabled=true;
+        }else alert("posa una id tita");
+}
+
+//game
 function cauTrap(trap){
 
 
@@ -28,20 +57,17 @@ function collides (a, b)
 
 }
 
-function collides2 (a, b)
+function collides2 (a, b,pre)
 {
 
     return !(
-        ((a.y + a.height+5) < (b.y-5)) ||
-        (a.y-5 > (b.y + b.height+5)) ||
-        ((a.x + a.width) < b.x) ||
-        (a.x > (b.x + b.width))
+        ((a.y + a.height+pre) < (b.y-pre)) ||
+        (a.y-pre > (b.y + b.height+pre)) ||
+        ((a.x + a.width+3) < b.x-3) ||
+        (a.x-3 > (b.x + b.width+3))
         );
 
 }
-
-
-
 
 
 function createSpike(width,height){
@@ -70,21 +96,50 @@ function createTrap(width,height){
     trap[trapi].body.fixedRotation = true;
     trap[trapi].owidth=width;
     trap[trapi].oheight=height;
-    trap[trapi].timer=0;
 
     trapi++;
 }
 
+function createLakitu(width,height){
 
-function createBarrel(width,height){
+    lakitu = game.add.sprite(width, height, 'lakitu');
 
-    barrel[barreli] = game.add.sprite(width, height, 'barrel');
+    game.physics.p2.enable(lakitu);
+
+    lakitu.body.data.gravityScale = 0;
+    lakitu.body.setZeroDamping();
+    lakitu.body.fixedRotation = true;
+    lakitu.owidth=width;
+    lakitu.oheight=height;
+    lakitu.caca=true;
+}
+function createLakitu2(width,height){
+
+    lakitu2 = game.add.sprite(width, height, 'lakitu2');
+
+    game.physics.p2.enable(lakitu2);
+
+    lakitu2.body.data.gravityScale = 0;
+    lakitu2.body.setZeroDamping();
+    lakitu2.body.fixedRotation = true;
+    lakitu.owidth=width;
+    lakitu.oheight=height;
+    lakitu.caca=true;
+}
+
+function createBarrel(width,height,sprite){
+
+    barrel[barreli] = game.add.sprite(width, height, sprite);
 
     game.physics.p2.enable(barrel[barreli]);
 
     barrel[barreli].body.data.gravityScale = 0;
     barrel[barreli].body.setZeroDamping();
-    barrel[barreli].body.fixedRotation = false;
+    if(sprite=='barrel')barrel[barreli].body.fixedRotation = false;
+    else {
+        barrel[barreli].body.fixedRotation = true;
+        barrel[barreli].spike=true;
+    }
     barrel[barreli].owidth=width;
     barrel[barreli].oheight=height;
     barrel[barreli].cankill=true;
@@ -95,7 +150,8 @@ function playerkill(player){
 
     player.reset(player.owidth, player.oheight);
     deaths++;
-    scoreText.setText("Deaths: "+deaths);
+    if(lakitu!="")lakitu.reset(lakitu.owidth,lakitu.oheight);
+    textDeaths.setText("Deaths: "+deaths);
     //console.log(deaths);
 }
 

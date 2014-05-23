@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Floppy nYordo</title>
+    <script src="scripts/socket.io.js"></script>
+    <script type="application/javascript" src="lib/phaser.min.js"></script>
+    <script type="application/javascript" src="scripts/functions.js"></script>
+    <script type="application/javascript" src="lib/jquery-2.1.1.min.js"></script>
+    <script type="application/javascript" src="scripts/states.js"></script>
+</head>
+<body>
+Your ID:<input id="myID" disabled/>Your mate's ID:<input id="mateID" /><button onclick="sendID();">Send ID</button>
+<div id="game">
+    <button id="mainMenu" style="display:none;" onclick="goMainMenu();">Main Menu</button>
+    <button id="restart" style="display:none;" onclick="restartLevel();">Restart</button>
+</div>
+</body>
+</html>
