@@ -43,8 +43,8 @@ function collides2 (a, b,pre)
     return !(
         ((a.y + a.height+pre) < (b.y-pre)) ||
         (a.y-pre > (b.y + b.height+pre)) ||
-        ((a.x + a.width+2) < b.x-2) ||
-        (a.x-2 > (b.x + b.width+2))
+        ((a.x + a.width+3) < b.x-3) ||
+        (a.x-3 > (b.x + b.width+3))
         );
 
 }

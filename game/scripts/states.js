@@ -119,6 +119,7 @@ create : function() {
     flagsingle.body.fixedRotation = true;
 
     flagsingle.body.data.gravityScale = 0;
+    flagsingle.asd=true;
 
     flagmulti = game.add.sprite(530, 350, 'block');
 
@@ -127,6 +128,8 @@ create : function() {
     flagmulti.body.fixedRotation = true;
 
     flagmulti.body.data.gravityScale = 0;
+    flagmulti.right=false;
+    flagmulti.asd=true;
 
     //carreguem els inputs
     cursors = game.input.keyboard.createCursorKeys();
@@ -212,11 +215,34 @@ update : function() {
     //FI funcions de moviment
 
     if(trapcollides(flagsingle, player)){
+        if(flagsingle.asd){
+            flagsingle.exists=false;
+            flagsingle = game.add.sprite(330, 350, 'tifa');
+            game.physics.p2.enable(flagsingle);
+        }
+
+
         cauTrap(flagsingle);
 
     }
     if(trapcollides(flagmulti, player)){
-        cauTrap(flagmulti);
+        if(flagmulti.right)flagmulti.body.velocity.x=400;
+        if(!flagmulti.right)flagmulti.body.velocity.x=-400;
+        if(flagmulti.asd){
+            game.add.text(520,450,"Nope >:C", {font: "26px arial", fill: "#fff"});
+            game.add.text(475,292,"__________", {font: "24px arial", fill: "#fff"});
+            game.add.text(475,286,"__________", {font: "24px arial", fill: "#fff"});
+            var yol=game.add.text(475,340,"yolooo!", {font: "24px arial", fill: "#fff"});
+        }
+    }
+
+    if(flagmulti.x>740)flagmulti.right=false;
+
+    if(flagmulti.x<60)flagmulti.right=true;
+
+
+    if(checkIfCanJump(flagsingle)){
+        flagsingle.reset(-100,-100);
 
     }
 
