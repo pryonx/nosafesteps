@@ -35,6 +35,10 @@ function goMainMenu(){
 
     narcis.reset(-800,-800);
     narcis.spawn=false;
+    if(puntsExamen){
+        punts=0;
+        puntsExamen.setText("");
+    }
     game.state.start('InGame');
     game.paused=false;
     document.getElementById('restart').style.display="none";
@@ -43,6 +47,10 @@ function goMainMenu(){
 }
 
 function restartLevel(){
+    if(puntsExamen){
+        punts=0;
+        puntsExamen.setText("");
+    }
     game.state.start(actualState);
     game.paused=false;
     document.getElementById('restart').style.display="none";
