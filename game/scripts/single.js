@@ -57,6 +57,7 @@ preload : function() {
     game.load.image('lakitu', 'assets/lakitu.png', 32, 32);
     game.load.image('lakitu2', 'assets/lakitu2.png', 32, 32);
     game.load.image('tifa', 'assets/tifa.png', 32, 32);
+    game.load.image('background', 'assets/background.jpg');
 },
     
 create : function() {
@@ -65,7 +66,10 @@ create : function() {
     //iniciem el motor de fisiques
     game.physics.startSystem(Phaser.Physics.P2JS);
     //color de fondo
-    game.stage.backgroundColor = '#308fe3';
+    //game.stage.backgroundColor = '#308fe3';
+    //imatge de fons
+    game.add.tileSprite(0, 0, 1200, 750, 'background');
+    
     //posem les textures del mapa
     map = game.add.tilemap('map');
 
