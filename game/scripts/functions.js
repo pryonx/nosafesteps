@@ -109,13 +109,18 @@ function collides2 (a, b,pre)
 }
 
 
-function createSpike(width,height){
+function createSpike(width,height,angle){
 
     spike[spikei] = game.add.sprite(width, height, 'spike');
 
     game.physics.p2.enable(spike[spikei]);
 
     spike[spikei].body.fixedRotation = true;
+    spike[spikei].body.dynamic = false;
+		if(angle == "right"){spike[spikei].angle = 90;}
+		else if (angle == "left") {spike[spikei].angle = 270;}
+		else if (angle == "up"){spike[spikei].angle = 0;}
+		else if (angle == "down") {spike[spikei].angle = 180;}
     spike[spikei].owidth=width;
     spike[spikei].oheight=height;
 
