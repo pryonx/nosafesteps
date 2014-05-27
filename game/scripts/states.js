@@ -35,13 +35,19 @@ function pausel(e) {
 
     if(keyCode=="80"&&game.paused==true){
         game.paused=false;
+        //document.getElementById('overlay').style.display="none";
         document.getElementById('restart').style.display="none";
         document.getElementById('mainMenu').style.display="none";
+        document.getElementById('ajax').style.display="none";
+        document.getElementById('ajaxName').style.display="none";
         //console.log("continua");
     }else if(keyCode=="80"&&game.paused==false){
         game.paused=true;
+		//document.getElementById('overlay').style.display="";
         document.getElementById('restart').style.display="";
         document.getElementById('mainMenu').style.display="";
+        document.getElementById('ajax').style.display="";
+        document.getElementById('ajaxName').style.display="";
         //console.log("pause");
     }
 }

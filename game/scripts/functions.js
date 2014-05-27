@@ -1,4 +1,24 @@
-//node
+
+function ajax(){
+
+    var query=document.getElementById("ajaxName").value+","+numlevel+","+deaths;
+
+    var xmlhttp;//creem consulta ajax
+    if (window.XMLHttpRequest)
+    {// IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    //alert(query);
+    xmlhttp.open("GET","scripts/updateDB.php?query=" + query,false);//pasa per get la query
+    xmlhttp.send();
+    var resposta= xmlhttp.responseText.split(",");
+    if(resposta=="fail")alert("Name already exist ...");
+}
+
 function actionOnClick () {
 
     background.visible =! background.visible;
@@ -32,29 +52,38 @@ function goMainMenu(){
         if (spike[ii])spike[ii].reset(-100, -100);
         ii++;
     }
-
-    narcis.reset(-800,-800);
-    narcis.spawn=false;
-    if(puntsExamen){
-        punts=0;
-        puntsExamen.setText("");
+    if(narcis!=""){
+        narcis.reset(-800,-800);
+        narcis.spawn=false;
+        if(puntsExamen){
+            punts=0;
+            puntsExamen.setText("");
+    }
     }
     game.state.start('InGame');
     game.paused=false;
+	document.getElementById('overlay').style.display="none";
     document.getElementById('restart').style.display="none";
     document.getElementById('mainMenu').style.display="none";
+    document.getElementById('ajax').style.display="none";
+    document.getElementById('ajaxName').style.display="none";
     narcis.facing=true;
 }
 
 function restartLevel(){
-    if(puntsExamen){
-        punts=0;
-        puntsExamen.setText("");
+    if(narcis!=""){
+        if(puntsExamen){
+            punts=0;
+            puntsExamen.setText("");
+        }
     }
     game.state.start(actualState);
     game.paused=false;
+	document.getElementById('overlay').style.display="none";
     document.getElementById('restart').style.display="none";
     document.getElementById('mainMenu').style.display="none";
+    document.getElementById('ajax').style.display="none";
+    document.getElementById('ajaxName').style.display="none";
 
 }
 

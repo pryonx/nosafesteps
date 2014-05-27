@@ -2,9 +2,9 @@
 function conexio()
 {
     //estableix conexio a la BD seleccionada
-    $con= @mysql_connect("25.153.105.253","root2","ddjd12cr") or die ("No es pot conectar a la Base de Dades");
-
-    mysql_select_db("nosafesteps",$con) or die (mysql_error());
+   	$con= @mysql_connect("25.153.105.253","root2","ddjd12cr") or die ("No es pot conectar a la Base de Dades");
+    
+	mysql_select_db("nosafesteps",$con) or die (mysql_error());
 }
 
 function sql($query)

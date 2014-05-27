@@ -1,10 +1,7 @@
 <?php
 
-
-$query = "SELECT * FROM instituts";
-
 function connection(){
-    $username="root";
+    $username="root2";
     $password="ddjd12cr";
     $database="nosafesteps";
     
@@ -40,7 +37,5 @@ function sql($query)
     }
 }
 
-$result = sql($query);
-printf($result[0][5]);
 
 ?>

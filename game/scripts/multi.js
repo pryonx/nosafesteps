@@ -29,7 +29,7 @@ var myID="";//guarda la teva id
 var mateID="";//guarda la id introduida del company
 
 
-        var socket = io.connect('http://localhost:3000');//variable del socket
+        var socket = io.connect('25.153.105.253:3000');//variable del socket
         //si rep info amb el nom de news del server actualitza la teva id(nomes passa al carregar)
         socket.on('news', function (data) {
             console.log(data);
