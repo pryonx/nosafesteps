@@ -1,0 +1,111 @@
+body {
+	background-color: #adadad;
+}
+
+#contenidor{
+	border: 10px solid #b44747;
+	border-top: none;
+	width: 60%;
+	top: -9px;
+	left: 20%;
+	position: relative;
+}
+
+#header{
+	background-color: #312e2e;	
+}
+
+#header a{
+	font-family: Arial, Verdana, sans-serif;
+	color: #fff;
+	background-color: rgb(131, 61, 255);
+	border: 2px solid white;
+	text-decoration: none;
+	margin-right: 30px;
+	padding: 5px 5px 5px 5px;
+	position: relative;
+	left: 40%;
+	top: 29px;
+}
+
+#banner{
+	background-image: url(../img/logo.png);
+	background-color: #7fbfff;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 218px;
+	width: 100%;
+}
+
+#buttons{
+	position: absolute;
+	height: 80px;
+	border: 10px solid #2aa253;
+	margin-top: 2px;
+}
+#buttons2{
+ position: relative;
+ height: 80px;
+ border: 10px solid #2aa253;
+ margin-top: 2px;
+}
+
+
+#content{
+	background-color: #312e2e;
+	border: 5px solid #d99537;
+	width: 72.9%;
+	height: 80%;
+	float: left;
+	position: relative;
+    overflow: auto;
+}
+
+#rightcol{
+	background-color: #312e2e;
+	border: 5px solid #9252af;
+	width: 24.5%;
+	height: 80%;
+	left: 74.2%;
+	position: relative;
+}
+#ajaxName{
+ position: absolute !important;
+ top: 40% !important;
+}
+#footer{
+	background-color: #312e2e;
+	border: 5px solid #b44747;
+	border-bottom: none;
+	border-left: none;
+	border-right: none;
+	height: 80px;
+	position:relative;
+}
+
+#gamecontainer{
+	max-height: 50%;
+}
+
+#game button{
+	width:150px;
+	position: absolute;
+}
+
+#overlay{
+	background: #333;
+	opacity: 0.8;
+	height: 486px;
+	width: 644px;
+	top:25px;
+	position: absolute;
+}
+
+table th{
+    background-color: #5b1d5d;
+}
+
+table td{
+    border: 1px solid black;
+    background-color: #fff;
+}

@@ -1,0 +1,20 @@
+<html>
+<head>
+<script src="scripts/socket.io.js"></script>
+<script>
+  var socket = io.connect('http://localhost:3000');
+  socket.on('news', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+</script>
+
+    <title>Floppy nYordo</title>
+    <script type="application/javascript" src="phaser-master/phaser.min.js"></script>
+    <script type="application/javascript" src="states.js"></script>
+    <script type="application/javascript" src="functions.js"></script>
+    <script type="application/javascript" src="jquery-2.1.1.min.js"></script>
+</head>
+<body>
+</body>
+</html>

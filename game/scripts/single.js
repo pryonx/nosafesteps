@@ -57,6 +57,7 @@ preload : function() {
     game.load.image('lakitu', 'assets/lakitu.png', 32, 32);
     game.load.image('lakitu2', 'assets/lakitu2.png', 32, 32);
     game.load.image('tifa', 'assets/tifa.png', 32, 32);
+    game.load.image('background', 'assets/background.jpg');
 },
     
 create : function() {
@@ -65,7 +66,10 @@ create : function() {
     //iniciem el motor de fisiques
     game.physics.startSystem(Phaser.Physics.P2JS);
     //color de fondo
-    game.stage.backgroundColor = '#308fe3';
+    //game.stage.backgroundColor = '#308fe3';
+    //imatge de fons
+    game.add.tileSprite(0, 0, 1200, 750, 'background');
+    
     //posem les textures del mapa
     map = game.add.tilemap('map');
 
@@ -368,6 +372,63 @@ update : function() {
     if(lakitu2.caca&&trapcollides(lakitu2,player2)&&timer%30==0){
         createBarrel(lakitu2.x,lakitu2.y+50,'tifa');
     }
+
+    //si hi ha boss
+    if(narcis!=""&&narcis.spawn){
+        narcis.reset(narcis.owidth,narcis.oheight);
+        if(timer%17==0){
+            if (narcis.facing) {
+                narcis.loadTexture('narcis', 0);
+                narcis.facing=false;
+                console.log(narcis.facing);
+            }else{
+                narcis.animations.play('right');
+                narcis.facing=true;
+                narcis.loadTexture('narcis2', 0);
+            }
+        }
+        if(narcis.summon){
+            narcis.summon=false;
+            createSpawn(Math.random()*800,narcis.y+80,'exam');
+            createSpawn(Math.random()*800,narcis.y+80,'exam');
+            createSpawn(Math.random()*800,narcis.y+80,'exam');
+            createSpawn(Math.random()*800,narcis.y+80,'exam');
+            createSpawn(Math.random()*800,narcis.y+80,'exam');
+            createSpawn(Math.random()*800,narcis.y+80,'exam');
+            createSpawn(Math.random()*800,narcis.y+80,'exam');
+            createSpawn(Math.random()*800,narcis.y+80,'exam');
+            createSpawn(Math.random()*800,narcis.y+80,'pernil');
+            createSpawn(Math.random()*800,narcis.y+80,'pernil');
+        }
+        var iii = 0;
+        while (spawni > iii) {
+
+            if (trapcollides(spawn[iii], player)||trapcollides(spawn[iii], player2))cauTrap(spawn[iii]);
+            if (checkIfCanJump(spawn[iii])){
+
+                spawn[iii].reset(Math.random()*800,narcis.y+70);
+            }
+
+            if (collides2(player, spawn[iii],12) && spawn[iii].cankill) {
+                //createBarrel(barrel[iii].owidth,barrel[iii].oheight,'barrel');
+                spawn[iii].reset(Math.random()*800,narcis.y+70);
+                playerpunt(player,false);
+            }else if (collides2(player, spawn[iii],12) && !spawn[iii].cankill) {
+                //createBarrel(barrel[iii].owidth,barrel[iii].oheight,'barrel');
+                spawn[iii].reset(Math.random()*800,narcis.y+70);
+                playerpunt(player,true);
+            }
+
+            iii++;
+        }
+
+    }
+    if(punts>9){
+        narcis.spawn=false;
+        narcis.exist=false;
+        game.add.text(380,300,"You Win", {font: "24px arial", fill: "#fff"});
+    }
+
 }
 
 };

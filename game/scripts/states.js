@@ -21,7 +21,10 @@ var trapi=0;//contador de spikemans
 var barrel=[];//array de objectes barrel
 var barreli=0;//contador de barrels
 var lakitu="";//variable del mov lakitu
-
+var narcis="";
+var spawn=[];//array de objectes spawn boss
+var spawni=0;//contador de spawn boss
+var punts=0;
 var timer=0;//es un contador que se incrementa cada vegada que s'executa l'update es per limitar el moviment dels lakitus
 
 
@@ -32,13 +35,19 @@ function pausel(e) {
 
     if(keyCode=="80"&&game.paused==true){
         game.paused=false;
+        //document.getElementById('overlay').style.display="none";
         document.getElementById('restart').style.display="none";
         document.getElementById('mainMenu').style.display="none";
+        document.getElementById('ajax').style.display="none";
+        document.getElementById('ajaxName').style.display="none";
         //console.log("continua");
     }else if(keyCode=="80"&&game.paused==false){
         game.paused=true;
+		//document.getElementById('overlay').style.display="";
         document.getElementById('restart').style.display="";
         document.getElementById('mainMenu').style.display="";
+        document.getElementById('ajax').style.display="";
+        document.getElementById('ajaxName').style.display="";
         //console.log("pause");
     }
 }
@@ -57,6 +66,8 @@ preload : function() {
     game.load.image('tiles2', 'assets/textures.png');
     game.load.spritesheet('dude', 'assets/dude.png', 42, 74);
     game.load.spritesheet('dude2', 'assets/dude2.png', 42, 74);
+    game.load.image('narcis', 'assets/narcis.png', 89, 107);
+    game.load.image('narcis2', 'assets/narcis2.png', 89, 107);
     game.load.image('flag', 'assets/flag-5.png', 32, 32);
     game.load.image('barrel', 'assets/barrel.png', 32, 32);
     game.load.image('spike', 'assets/spike.png', 32, 32);
@@ -66,6 +77,8 @@ preload : function() {
     game.load.image('lakitu2', 'assets/lakitu2.png', 32, 32);
     game.load.image('tifa', 'assets/tifa.png', 32, 32);
     game.load.image('block', 'assets/block.png', 32, 32);
+    game.load.image('exam', 'assets/exam.png', 32, 32);
+    game.load.image('pernil', 'assets/pernil.png', 32, 32);
 },
     
 create : function() {
