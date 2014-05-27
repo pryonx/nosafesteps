@@ -393,10 +393,7 @@ update : function() {
             createSpawn(Math.random()*800,narcis.y+80,'exam');
             createSpawn(Math.random()*800,narcis.y+80,'exam');
             createSpawn(Math.random()*800,narcis.y+80,'exam');
-            createSpawn(Math.random()*800,narcis.y+80,'exam');
-            createSpawn(Math.random()*800,narcis.y+80,'exam');
-            createSpawn(Math.random()*800,narcis.y+80,'exam');
-            createSpawn(Math.random()*800,narcis.y+80,'exam');
+            createSpawn(Math.random()*800,narcis.y+80,'pernil');
             createSpawn(Math.random()*800,narcis.y+80,'pernil');
             createSpawn(Math.random()*800,narcis.y+80,'pernil');
         }
